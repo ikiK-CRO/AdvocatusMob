@@ -1,0 +1,39 @@
+<Page
+    navigatingTo="onNavigatingTo"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar>
+        <!--
+        Use the NavigationButton as a side-drawer button in Android
+        because ActionItems are shown on the right side of the ActionBar
+        -->
+        <NavigationButton ios:visibility="collapsed" tap="onDrawerButtonTap">
+            <Label class="fas" text="&#xf0c9;"></Label>
+        </NavigationButton>
+        <!--
+        Use the ActionItem for IOS with position set to left. Using the
+        NavigationButton as a side-drawer button in iOS is not possible,
+        because its function is to always navigate back in the application.
+        -->
+        <ActionItem
+            android:visibility="visible"
+            tap="onDrawerButtonTap"
+            ios.position="left">
+            <Label class="fas" text="&#xf0c9;" style="color: white"></Label>
+        </ActionItem>
+        <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
+        <StackLayout orientation="horizontal"
+            ios:horizontalAlignment="center"
+            android:horizontalAlignment="center"
+            id="staction"
+            >
+            <Image src="~/img/logo.png" class="action-image" width="50" height="50" ios:style="margin-top: -50px"></Image>
+            <Label text="" class="action-label h2" color="white" ios:style="margin-top: -40px"></Label>
+        </StackLayout>
+    </ActionBar>
+
+    <GridLayout class="page__content">
+        <Label class="page__content-icon fas" text="&#xf015;"></Label>
+        <Label class="page__content-placeholder" text="<!-- David je bedast, na kvadart -->"></Label>
+    </GridLayout>
+</Page>
