@@ -7,7 +7,7 @@
         Use the NavigationButton as a side-drawer button in Android
         because ActionItems are shown on the right side of the ActionBar
         -->
-        <NavigationButton ios:visibility="collapsed" tap="onDrawerButtonTap">
+        <NavigationButton ios:visibility="visible" android:visibility="visible" tap="onDrawerButtonTap">
             <Label class="fas" text="&#xf0c9;"></Label>
         </NavigationButton>
         <!--
@@ -16,17 +16,26 @@
         because its function is to always navigate back in the application.
         -->
         <ActionItem
-            android:visibility="collapsed"
+            android:visibility="visible"
             tap="onDrawerButtonTap"
             ios.position="left">
-            <Label class="fas" text="&#xf0c9;"></Label>
+            <Label class="fas" text="&#xf0c9;" style="color: white"></Label>
         </ActionItem>
-        <Label text="Browse"></Label>
+        <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
+        <StackLayout orientation="horizontal"
+            ios:horizontalAlignment="center"
+            android:horizontalAlignment="center"
+            id="staction"
+            >
+            <Image src="~/img/logo.png" class="action-image" width="50" height="50" ios:style="margin-top: -50px"></Image>
+            <Label text="" class="action-label h2" color="white" ios:style="margin-top: -40px"></Label>
+        </StackLayout>
     </ActionBar>
 
-    <GridLayout class="page__content">
-        <Label class="page__content-icon far" text="&#xf07c;"></Label>
-        <ListPicker items="{{ years }}" selectedIndex="0" loaded="onListPickerLoaded" />
-        <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
-    </GridLayout>
+    <StackLayout class="page__content">
+        <ListPicker items="{{ pretraga }}" selectedIndex="0" loaded="onListPickerLoaded" style="background-color: white"/>
+        <TextField class="" hint="Naš broj..." returnKeyType="done" autocorrect="false" autocapitalizationType="sentences" id="val"></TextField>
+        <Button text="TRAŽI" class="btn btn-primary btn-rounded-sm" style="width: 36%" id="btn"/>
+        <HtmlView html="{{ rezultat }}" class="text-left" textWrap="true" loaded="onHtmlLoaded"/>
+    </StackLayout>
 </Page>
