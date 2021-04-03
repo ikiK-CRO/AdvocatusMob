@@ -17,7 +17,7 @@
         <ActionItem
             android:visibility="visible"
             tap="onDrawerButtonTap"
-            ios.position="left">
+            ios.position="">
             <Label class="fas" text="&#xf0c9;" style="color: white"></Label>
         </ActionItem>
         <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
@@ -37,6 +37,7 @@
         <!-- <HtmlView html="{{ rezultat }}" class="text-left" textWrap="true" loaded="onHtmlLoaded"/> -->
         <ActivityIndicator busy="true" id="busy" visibility="collapse"></ActivityIndicator>
         <StackLayout class="hr m-10"></StackLayout>
+        <Label class="page__content-icon fas" text="&#xf07c;" id="ikona"></Label>
         <ListView
             items="{{ rezultat }}"
             loaded="{{ onListViewLoaded }}"

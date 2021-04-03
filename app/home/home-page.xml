@@ -18,7 +18,7 @@
         <ActionItem
             android:visibility="visible"
             tap="onDrawerButtonTap"
-            ios.position="left">
+            ios.position="right">
             <Label class="fas" text="&#xf0c9;" style="color: white"></Label>
         </ActionItem>
         <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
@@ -32,8 +32,9 @@
         </StackLayout>
     </ActionBar>
 
-    <GridLayout class="page__content">
+    <StackLayout class="page__content">
         <Label class="page__content-icon fas" text="&#xf015;"></Label>
         <Label class="page__content-placeholder" text="<!-- David je bedast, na kvadart -->"></Label>
-    </GridLayout>
+        <Button text="This is Button!" tap="{{ myFunction }}" />
+    </StackLayout>
 </Page>

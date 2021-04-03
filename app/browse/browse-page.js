@@ -14,12 +14,15 @@ export function onNavigatingTo (args) {
   let btn = page.getViewById('btn')
   let kategorije = page.getViewById('kategorije')
 
+let odabirKategorije = "Predmet pravni"
+
   kategorije.on('selectedIndexChange', lpargs => {
     const picker = lpargs.object
     // const kat= picker.selectedValue;
     // console.log(kat)
     //console.log(`ListPicker selected value: ${picker.selectedValue} ListPicker selected index: ${picker.selectedIndex}`);
-    console.log(pretraga[picker.selectedIndex])
+    odabirKategorije = pretraga[picker.selectedIndex]
+    console.log(odabirKategorije)
   })
 
   btn.on(GestureTypes.tap, function (args) {
@@ -29,7 +32,14 @@ export function onNavigatingTo (args) {
     let res = page.getViewById('val').text
     let listView = page.getViewById('listView')
     let url = 'https://advocatus-test.appdiz-informatika.hr/api/api_V1.php'
-    let req = url + '?apitest=' + res
+    let apiKat
+
+    if(odabirKategorije==="Predmet pravni"){apiKat='?getpredmetpravni='}
+    if(odabirKategorije==="Predmet Fizički"){apiKat='?getpredmetfiz='}
+    
+
+
+    let req = url + apiKat + res
     fetch(req)
       .then(response => {
         if (response.ok) {
@@ -53,6 +63,7 @@ export function onNavigatingTo (args) {
         page.bindingContext.set('rezultat', getMessage(result))
         console.log(result)
         page.getViewById('busy').style.visibility="collapse"
+        page.getViewById('ikona').style.visibility="collapsed"
 
         function printValues (obj) {
           for (var k in obj) {
