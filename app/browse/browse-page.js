@@ -12,10 +12,22 @@ export function onNavigatingTo (args) {
   page.bindingContext.set('rezultat', getMessage(val))
 
   let btn = page.getViewById('btn')
+  let kategorije = page.getViewById('kategorije')
+
+  kategorije.on('selectedIndexChange', lpargs => {
+    const picker = lpargs.object
+    // const kat= picker.selectedValue;
+    // console.log(kat)
+    //console.log(`ListPicker selected value: ${picker.selectedValue} ListPicker selected index: ${picker.selectedIndex}`);
+    console.log(pretraga[picker.selectedIndex])
+  })
 
   btn.on(GestureTypes.tap, function (args) {
     console.log('Tap')
+    page.getViewById('busy').style.visibility="visible"
+    
     let res = page.getViewById('val').text
+    let listView = page.getViewById('listView')
     let url = 'https://advocatus-test.appdiz-informatika.hr/api/api_V1.php'
     let req = url + '?apitest=' + res
     fetch(req)
@@ -30,10 +42,17 @@ export function onNavigatingTo (args) {
         //console.log(data)
         let obj = data
         //viewModel.set('message', getMessage(val))
-        let result
+        let result = []
         printValues(obj)
+        // page.bindingContext.set('rezultat', getMessage(result))
+        listView.animate({
+          opacity: 1,
+          duration: 700
+        })
+        page.getViewById('val').dismissSoftInput();
         page.bindingContext.set('rezultat', getMessage(result))
         console.log(result)
+        page.getViewById('busy').style.visibility="collapse"
 
         function printValues (obj) {
           for (var k in obj) {
@@ -42,7 +61,8 @@ export function onNavigatingTo (args) {
             } else {
               if (obj[k] != '' && obj[k] != undefined) {
                 //viewModel.set('message', getMessage("test"))
-                result += '<br>' + obj[k]
+                // result += '<br>' + obj[k]
+                result.push({ res: obj[k] })
               }
             }
           }
@@ -64,7 +84,6 @@ const pretraga = [
   'Stranka Fizička'
 ]
 
-
 function getMessage (val) {
   if (val !== '') {
     return val
@@ -74,18 +93,3 @@ function getMessage (val) {
 }
 
 let val = ''
-// export function onNavigatingTo(args: EventData) {
-//   const page = args.object
-//   const vm = fromObject({
-//     years: years
-//   })
-//   page.bindingContext = vm
-// }
-
-// export function onListPickerLoaded(args) {
-//   const listPickerComponent = args.object
-//   listPickerComponent.on('selectedIndexChange', (data: EventData) => {
-//     const picker = data.object as ListPicker
-//     console.log(`index: ${picker.selectedIndex}; item" ${years[picker.selectedIndex]}`)
-//   })
-// }
