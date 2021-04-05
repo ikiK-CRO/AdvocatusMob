@@ -1,12 +1,12 @@
 {
-  "name": "@nativescript/template-drawer-navigation",
+  "name": "Advocatus Mobile",
   "main": "app/app.js",
-  "displayName": "Navigation Drawer",
+  "displayName": "Advocatus Mobile",
   "templateType": "App template",
   "version": "8.0.2",
-  "description": "NativeScript Application",
-  "author": "NativeScript Team <oss@nativescript.org>",
-  "license": "SEE LICENSE IN <your-license-filename>",
+  "description": "Advocatus Mobile",
+  "author": "Appdiz Informatika j.d.o.o",
+  "license": "SEE LICENSE IN xxx",
   "publishConfig": {
     "access": "public"
   },
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@nativescript/core": "~8.0.0",
+    "@nativescript/firebase": "^11.1.3",
     "@nativescript/theme": "~3.0.1",
     "nativescript-ui-sidedrawer": "~9.0.3",
     "rxjs": "^6.6.7"
