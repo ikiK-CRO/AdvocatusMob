@@ -8,13 +8,29 @@ export function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new BrowseViewModel()
 
+  const pretraga = [
+    'Predmet pravni',
+    'Predmet Fizički',
+    'Stranka Pravna',
+    'Stranka Fizička'
+  ]
+
+  function getMessage (val) {
+    if (val !== '') {
+      return val
+    } else {
+      return '...'
+    }
+  }
+
+  let val = ''
   page.bindingContext.set('pretraga', pretraga)
   page.bindingContext.set('rezultat', getMessage(val))
 
   let btn = page.getViewById('btn')
   let kategorije = page.getViewById('kategorije')
 
-let odabirKategorije = "Predmet pravni"
+  let odabirKategorije = 'Predmet pravni'
 
   kategorije.on('selectedIndexChange', lpargs => {
     const picker = lpargs.object
@@ -22,22 +38,24 @@ let odabirKategorije = "Predmet pravni"
     // console.log(kat)
     //console.log(`ListPicker selected value: ${picker.selectedValue} ListPicker selected index: ${picker.selectedIndex}`);
     odabirKategorije = pretraga[picker.selectedIndex]
-    console.log(odabirKategorije)
+    //console.log(odabirKategorije)
   })
 
   btn.on(GestureTypes.tap, function (args) {
-    console.log('Tap')
-    page.getViewById('busy').style.visibility="visible"
-    
+    //console.log('Tap')
+    page.getViewById('busy').style.visibility = 'visible'
+
     let res = page.getViewById('val').text
     let listView = page.getViewById('listView')
     let url = 'https://advocatus-test.appdiz-informatika.hr/api/api_V1.php'
     let apiKat
 
-    if(odabirKategorije==="Predmet pravni"){apiKat='?getpredmetpravni='}
-    if(odabirKategorije==="Predmet Fizički"){apiKat='?getpredmetfiz='}
-    
-
+    if (odabirKategorije === 'Predmet pravni') {
+      apiKat = '?getpredmetpravni='
+    }
+    if (odabirKategorije === 'Predmet Fizički') {
+      apiKat = '?getpredmetfiz='
+    }
 
     let req = url + apiKat + res
     fetch(req)
@@ -59,11 +77,11 @@ let odabirKategorije = "Predmet pravni"
           opacity: 1,
           duration: 700
         })
-        page.getViewById('val').dismissSoftInput();
+        page.getViewById('val').dismissSoftInput()
         page.bindingContext.set('rezultat', getMessage(result))
-        console.log(result)
-        page.getViewById('busy').style.visibility="collapse"
-        page.getViewById('ikona').style.visibility="collapsed"
+        //console.log(result)
+        page.getViewById('busy').style.visibility = 'collapse'
+        page.getViewById('ikona').style.visibility = 'collapsed'
 
         function printValues (obj) {
           for (var k in obj) {
@@ -88,19 +106,10 @@ export function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-const pretraga = [
-  'Predmet pravni',
-  'Predmet Fizički',
-  'Stranka Pravna',
-  'Stranka Fizička'
-]
-
-function getMessage (val) {
-  if (val !== '') {
-    return val
-  } else {
-    return '...'
-  }
+// get taped item fomr list and its content
+export function onItemTap (args) {
+  //console.log("Touch arguments: ", args);
+  var tappedView = args.view,
+    tappedItem = tappedView.bindingContext
+  console.log(tappedItem)
 }
-
-let val = ''

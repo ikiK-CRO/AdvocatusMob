@@ -52,7 +52,7 @@
             <ListView.itemTemplate>
                 <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
                 <StackLayout class="list-group-item">
-                    <Label text="{{ res || '...' }}" textWrap="false" class="title" color="black" style="font-size:" />
+                    <Label text="{{ res || '...' }}" textWrap="false" class="title" color="black" style="font-size:"/>
                 </StackLayout>
             </ListView.itemTemplate>
         </ListView>

@@ -36,5 +36,7 @@
         <Label class="page__content-icon fas" text="&#xf015;"></Label>
         <Label class="page__content-placeholder" text="<!-- David je bedast, na kvadart -->"></Label>
         <Button text="This is Button!" tap="{{ myFunction }}" />
+        <HtmlView loaded="onHtmlLoaded"  html="{{ test }}" id="html"/>
+
     </StackLayout>
 </Page>
