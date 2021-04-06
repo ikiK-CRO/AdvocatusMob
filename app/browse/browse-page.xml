@@ -43,16 +43,17 @@
             loaded="{{ onListViewLoaded }}"
             itemTap="onItemTap"
             loadMoreItems="onLoadMoreItems"
-            separatorColor="orangered"
-            rowHeight="50"
-            class="fadein"
+            separatorColor="#607d8b"
+            rowHeight="auto"
+            class="fadein list-group"
             id="listView"
-            height= "2000"
+            height= "auto"
             >
             <ListView.itemTemplate>
                 <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
                 <StackLayout class="list-group-item">
-                    <Label text="{{ res || '...' }}" textWrap="false" class="title" color="black" style="font-size:"/>
+                    <Label text="{{ key || '...' }}" textWrap="false" class="list-group-item-heading" color="black" style="font-weight: bold;"/>
+                    <Label text="{{ data || '...' }}" textWrap="true" class="list-group-item-text" color="black" style=""/>
                 </StackLayout>
             </ListView.itemTemplate>
         </ListView>
