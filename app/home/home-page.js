@@ -1,28 +1,38 @@
-import { Application } from '@nativescript/core'
+import { Frame, Application } from '@nativescript/core'
 
 import { HomeViewModel } from './home-view-model'
+
+import { inboxMeniIkona } from '~/app'
 
 export function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new HomeViewModel()
 
-  // page.bindingContext = {
-  //   myFunction: () => {
-  //     console.log(true)
-  //   }
-  // }
+  let manuinbox = page.getViewById('manuinbox')
 
-  page.bindingContext.set('test', test())
-
-  function test () {
-    let res = '<div style="color:red; min-height: 50px" >click me test</div>'
-    return res
+  async function asyncCall () {
+    //console.log('calling')
+    const result = await inboxMeniIkona()
+    //console.log(result)
+    if (result != '0') {
+      manuinbox.color = 'orange'
+    }
   }
-  let html = page.getViewById('html')
-  console.log(html)
-  html.on("tap", (args) => {
-    console.log(args)
-});
+
+  setInterval(function () {
+    asyncCall()
+  }, 3000)
+
+  manuinbox.on('tap', args => {
+    console.log('manuinbox')
+
+    Frame.topmost().navigate({
+      moduleName: "featured/featured-page",
+      transition: {
+        name: 'fade'
+      }
+    })
+  })
 }
 
 export function onDrawerButtonTap (args) {

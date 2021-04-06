@@ -17,9 +17,16 @@
         -->
         <ActionItem
             android:visibility="visible"
+            tap="onInboxTap"
+            ios.position="right"
+            >
+            <Label class="fas fa-3x" text="&#xf01c;" style="color: white;  font-size: 20%; padding-right: 60px" id="manuinbox"></Label>
+        </ActionItem>
+        <ActionItem
+            android:visibility="visible"
             tap="onDrawerButtonTap"
             ios.position="right">
-            <Label class="fas" text="&#xf0c9;" style="color: white"></Label>
+            <Label class="fas  fa-3x" text="&#xf0c9;" style="color: white; font-size: 20%"></Label>
         </ActionItem>
         <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
         <StackLayout orientation="horizontal"

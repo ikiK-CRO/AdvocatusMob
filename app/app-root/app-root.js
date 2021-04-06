@@ -25,4 +25,3 @@ export function onNavigationItemTap(args) {
   const drawerComponent = Application.getRootView()
   drawerComponent.closeDrawer()
 }
-
