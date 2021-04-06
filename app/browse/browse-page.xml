@@ -34,6 +34,9 @@
         <ListPicker items="{{ pretraga }}" selectedIndex="0" loaded="onListPickerLoaded"  id="kategorije"/>
         <TextField class="nt-input" hint="  Naš broj..." returnKeyType="done" autocorrect="false" autocapitalizationType="sentences" id="val" width="30%" style="text-align:center"></TextField>
         <Button text="TRAŽI" class="btn btn-primary btn-rounded-sm" style="width: 36%" id="btn"/>
+
+        <Button text="&#xf103;" class="btn btn-primary fas fadein" style="width: 100%; margin-top: -20px; font-size: 50%;" height="10%" id="show" />
+
         <!-- <HtmlView html="{{ rezultat }}" class="text-left" textWrap="true" loaded="onHtmlLoaded"/> -->
         <ActivityIndicator busy="true" id="busy" visibility="collapse"></ActivityIndicator>
         <StackLayout class="hr m-10"></StackLayout>
@@ -47,7 +50,7 @@
             rowHeight="auto"
             class="fadein list-group"
             id="listView"
-            height= "auto"
+            height= "50%"
             >
             <ListView.itemTemplate>
                 <!-- The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) -->
