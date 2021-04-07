@@ -87,10 +87,27 @@ TextField {
 
 .nt-drawer__header {
   // background-color: var(--glavnab) !important;
-
 }
 
-.nt-drawer__header Label{
- color: white;
+.nt-drawer__header label {
+  color: white;
 }
 
+#meni Label {
+  font-size: 13%;
+}
+
+[atr='ne'] {
+  color:red;
+  font-weight: bold;
+} 
+
+
+.neprocitanaporuka{
+  color:red;
+  font-weight: bold;
+}
+
+.procitanaporuka {
+  color:black;
+}

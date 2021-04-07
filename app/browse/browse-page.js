@@ -1,14 +1,51 @@
-import { Application } from '@nativescript/core'
-
+import { Frame, Application } from '@nativescript/core'
+import { inboxMeniIkona } from '~/app'
 import { BrowseViewModel } from './browse-view-model'
-
 import { Label, GestureTypes } from '@nativescript/core'
-
 import { Enums } from '@nativescript/core'
 
 export function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new BrowseViewModel()
+
+
+  let manuinbox = page.getViewById('manuinbox')
+
+  async function asyncCall () {
+    //console.log('calling')
+    const result = await inboxMeniIkona()
+    //console.log(result)
+    if (result != '0') {
+      manuinbox.color = 'rgb(255, 136, 0)'
+
+      const animation1 = manuinbox.createAnimation({
+        opacity: 0.1,
+        duration: 1500
+      })
+      const animation2 = manuinbox.createAnimation({
+        opacity: 1,
+        duration: 1500
+      })
+      animation1.play().then(() => {
+        return animation2.play()
+      })
+    }
+  }
+  asyncCall()
+  setInterval(function () {
+    asyncCall()
+  }, 3000)
+  manuinbox.on('tap', args => {
+    console.log('manuinbox')
+
+    Frame.topmost().navigate({
+      moduleName: 'featured/featured-page',
+      transition: {
+        name: 'fade'
+      }
+    })
+  })
+
 
   const pretraga = [
     'Predmet pravni',

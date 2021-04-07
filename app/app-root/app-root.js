@@ -1,10 +1,36 @@
 import { Frame, Application } from '@nativescript/core';
-
 import { AppRootViewModel } from './app-root-view-model'
+import { inboxMeniIkona } from '~/app'
+
+
 
 export function onLoaded(args) {
   const drawerComponent = args.object
   drawerComponent.bindingContext = new AppRootViewModel()
+
+  let manuinbox = drawerComponent.getViewById('manuinbox')
+
+  async function asyncCall () {
+    //console.log('calling')
+    const result = await inboxMeniIkona()
+    //console.log(result)
+    if (result != '0') {
+      manuinbox.color = 'rgb(255, 136, 0)'
+
+      const animation1 = manuinbox.createAnimation({ opacity: 0.1, duration: 1500})
+      const animation2 = manuinbox.createAnimation({ opacity: 1, duration: 1500 })
+      animation1.play().then(() => {
+        return animation2.play()
+      })
+    }
+  }
+  asyncCall()
+  setInterval(function () {
+    asyncCall()
+  }, 3000)
+
+
+
 }
 
 export function onNavigationItemTap(args) {

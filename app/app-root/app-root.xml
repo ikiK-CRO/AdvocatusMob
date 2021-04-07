@@ -22,7 +22,7 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
                 <Label class="nt-drawer__header-footnote" text="Ime prezime" />
             </StackLayout>
 
-            <ScrollView row="1">
+            <ScrollView row="1" id="meni">
                 <StackLayout>
                     <GridLayout
             columns="auto, *"
@@ -64,7 +64,7 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
             title="Poruke"
             tap="onNavigationItemTap"
           >
-                        <Label row="0" col="0" text="&#xf01c;" class="nt-icon fas" />
+                        <Label row="0" col="0" text="&#xf01c;" class="nt-icon fas" id="manuinbox" />
                         <Label row="0" col="1" text="Poruke" class="p-r-10" />
                     </GridLayout>
 
@@ -88,7 +88,7 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
             title="Info"
             tap="onNavigationItemTap"
           >
-                        <Label row="0" col="0" text="&#xf05a;" class="nt-icon fas" />
+                        <Label row="0" col="0" text="&#xf05a;" class="nt-icon fas"  />
                         <Label row="0" col="1" text="Info" class="p-r-10" />
                     </GridLayout>
 

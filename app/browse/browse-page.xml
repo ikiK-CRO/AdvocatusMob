@@ -14,11 +14,18 @@
         NavigationButton as a side-drawer button in iOS is not possible,
         because its function is to always navigate back in the application.
         -->
+       <ActionItem
+            android:visibility="visible"
+            tap="onInboxTap"
+            ios.position="right"
+            >
+            <Label class="fas fa-3x" text="&#xf01c;" style="color: white;  font-size: 20%; padding-right: 60px" id="manuinbox"></Label>
+        </ActionItem>
         <ActionItem
             android:visibility="visible"
             tap="onDrawerButtonTap"
-            ios.position="">
-            <Label class="fas" text="&#xf0c9;" style="color: white"></Label>
+            ios.position="right">
+            <Label class="fas  fa-3x" text="&#xf0c9;" style="color: white; font-size: 20%"></Label>
         </ActionItem>
         <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
         <StackLayout orientation="horizontal"
@@ -38,9 +45,9 @@
         <Button text="&#xf002;" class="btn btn-primary fas fadein" style="width: 100%; margin-top: -20px; font-size: 35%; box-shadow: 0px 0px 0px transparent;" height="14%" id="show" />
 
         <!-- <HtmlView html="{{ rezultat }}" class="text-left" textWrap="true" loaded="onHtmlLoaded"/> -->
-        <ActivityIndicator busy="true" id="busy" visibility="collapse"></ActivityIndicator>
+        <ActivityIndicator busy="true" id="busy" visibility="collapsed"></ActivityIndicator>
         <StackLayout class="hr m-10"></StackLayout>
-        <Label class="page__content-icon fas" text="&#xf07c;" id="ikona"></Label>
+        <Label class="page__content-icon fas" text="&#xf07c;" id="ikona" style="margin-top: 20px;"></Label>
         <ListView
             items="{{ rezultat }}"
             loaded="{{ onListViewLoaded }}"

@@ -1,13 +1,13 @@
 <Page
+    loaded="onPageLoaded" xmlns:lv="nativescript-ui-listview"
     navigatingTo="onNavigatingTo"
     xmlns="http://schemas.nativescript.org/tns.xsd">
-
     <ActionBar>
         <!--
         Use the NavigationButton as a side-drawer button in Android
         because ActionItems are shown on the right side of the ActionBar
         -->
-        <NavigationButton ios:visibility="collapsed" tap="onDrawerButtonTap">
+        <NavigationButton ios:visibility="visible" tap="onDrawerButtonTap">
             <Label class="fas" text="&#xf0c9;"></Label>
         </NavigationButton>
         <!--
@@ -16,16 +16,56 @@
         because its function is to always navigate back in the application.
         -->
         <ActionItem
-            android:visibility="collapsed"
-            tap="onDrawerButtonTap"
-            ios.position="left">
-            <Label class="fas" text="&#xf0c9;"></Label>
+            android:visibility="visible"
+            tap="onInboxTap"
+            ios.position="right"
+            >
+            <Label class="fas fa-3x" text="&#xf01c;" style="color: white;  font-size: 20%; padding-right: 60px" id="manuinbox"></Label>
         </ActionItem>
-        <Label text="Featured"></Label>
+        <ActionItem
+            android:visibility="visible"
+            tap="onDrawerButtonTap"
+            ios.position="right">
+            <Label class="fas  fa-3x" text="&#xf0c9;" style="color: white; font-size: 20%"></Label>
+        </ActionItem>
+        <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
+        <StackLayout orientation="horizontal"
+            ios:horizontalAlignment="center"
+            android:horizontalAlignment="center"
+            id="staction"
+            >
+            <Image src="~/img/logo.png" class="action-image" width="50" height="50" ios:style="margin-top: -50px"></Image>
+            <Label text="" class="action-label h2" color="white" ios:style="margin-top: -40px"></Label>
+        </StackLayout>
     </ActionBar>
-
     <GridLayout class="page__content">
-        <Label class="page__content-icon fas" text="&#xf005;"></Label>
-        <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
+        <lv:RadListView items="{{ myObservableArray }}" class="list-group" separatorColor="#607d8b" rowHeight="auto" height= "100%" id="listView"
+            selectionBehavior="None" 
+            itemSwipeProgressEnded="onSwipeCellFinished"
+            itemSwipeProgressStarted="onSwipeCellStarted" 
+            itemSwipeProgressChanged="onSwipeCellProgressChanged"
+            itemSwiping="onItemSwiping" 
+            swipeActions="true" pullToRefresh="true" pullToRefreshInitiated="{{onPullToRefreshInitiated}}">
+            <lv:RadListView.itemSwipeTemplate>
+                <GridLayout columns="auto, *, auto" backgroundColor="#fcf9f1">
+                    <StackLayout id="mark-view" col="0" style="background-color: #607d8b;" tap="onLeftSwipeClick" paddingLeft="16" paddingRight="16" orientation="horizontal">
+                        <Label text="Označi pročitano" style="text-size: 20" verticalAlignment="center" horizontalAlignment="center"/>
+                    </StackLayout>
+                    <StackLayout id="delete-view" col="2" style="background-color: #194961;" tap="onRightSwipeClick"  paddingLeft="16" paddingRight="16" orientation="horizontal">
+                        <Label text="Obriši" style="text-size: 20" verticalAlignment="center" horizontalAlignment="center" />
+                    </StackLayout>
+                </GridLayout>
+            </lv:RadListView.itemSwipeTemplate>
+            <lv:RadListView.listViewLayout>
+                <lv:ListViewLinearLayout scrollDirection="Vertical" itemInsertAnimation="Fade" itemDeleteAnimation="Slide"/>
+            </lv:RadListView.listViewLayout>
+            <lv:RadListView.itemTemplate>
+                <StackLayout orientation="vertical" class="list-group-item">
+                    <Label fontSize="8" text="{{ itemName || '...' }}" textWrap="true" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}"  />
+                    <Label fontSize="12" text="{{ itemDescription || '...'}}" textWrap="true"  class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}"  />
+                    <StackLayout class="hr m-0"></StackLayout>
+                </StackLayout>
+            </lv:RadListView.itemTemplate>
+        </lv:RadListView>
     </GridLayout>
 </Page>
