@@ -55,6 +55,7 @@ export function onNavigatingTo (args) {
       })
       .then(data => {
         //console.log(data)
+        res = []
         data.forEach(e => {
           res.push({
             itemName: e['notif_dat'],
@@ -62,7 +63,6 @@ export function onNavigatingTo (args) {
             procitan: e['notif_stanje']
           })
         })
-
         myObservableArray = new ObservableArray(res)
         page.bindingContext.set('myObservableArray', myObservableArray)
       })
@@ -83,12 +83,14 @@ export function onNavigatingTo (args) {
   getPoruke()
 
   listView.on('pullToRefreshInitiated', function (eventData) {
-    //console.log(true)
+    console.log(true)
+    console.log(myObservableArray)
     getPoruke()
     setTimeout(function () {
       listView.notifyPullToRefreshFinished()
     }, 1000)
   })
+
 }
 
 export function onDrawerButtonTap (args) {
@@ -96,23 +98,23 @@ export function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-export function onLeftSwipeClick (args) {
-  const listView = Frame.topmost().currentPage.getViewById('listView')
-  console.log('Označi pročitano')
-  let clickedItem = args.object.bindingContext
-  console.log(clickedItem)
+// export function onLeftSwipeClick (args) {
+//   const listView = Frame.topmost().currentPage.getViewById('listView')
+//   console.log('Označi pročitano')
+//   let clickedItem = args.object.bindingContext
+//   console.log(clickedItem)
 
-  listView.notifySwipeToExecuteFinished()
-}
+//   listView.notifySwipeToExecuteFinished()
+// }
 
-export function onRightSwipeClick (args) {
-  const listView = Frame.topmost().currentPage.getViewById('listView')
-  console.log('Obriši Swipe Klik')
-  //const viewModel = listView.bindingContext;
-  let clickedItem = args.object.bindingContext
-  console.log(clickedItem)
-  //viewModel.myObservableArray.splice(viewModel.myObservableArray.indexOf(args.object.bindingContext), 1);
-  listView.notifySwipeToExecuteFinished()
-}
+// export function onRightSwipeClick (args) {
+//   const listView = Frame.topmost().currentPage.getViewById('listView')
+//   console.log('Obriši Swipe Klik')
+//   //const viewModel = listView.bindingContext;
+//   let clickedItem = args.object.bindingContext
+//   console.log(clickedItem)
+//   //viewModel.myObservableArray.splice(viewModel.myObservableArray.indexOf(args.object.bindingContext), 1);
+//   listView.notifySwipeToExecuteFinished()
+// }
 
 //export function onPullToRefreshInitiated (args) {}

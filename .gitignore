@@ -1,2 +1,4 @@
 node_modules
 platforms
+google-services.json
+GoogleService-Info.plist
