@@ -17,10 +17,18 @@
         -->
         <ActionItem
             android:visibility="visible"
+            tap="onInfoTap"
+            ios.position="right"
+            android.position="actionBar"
+            >
+            <Label class="fas fa-3x" text="&#xf05a;" style="color: white;  font-size: 20%; padding-right: 40px" id="manuinfo"></Label>
+        </ActionItem>
+        <ActionItem
+            android:visibility="visible"
             tap="onInboxTap"
             ios.position="right"
             >
-            <Label class="fas fa-3x" text="&#xf01c;" style="color: white;  font-size: 20%; padding-right: 60px" id="manuinbox"></Label>
+            <Label class="fas fa-3x" text="&#xf01c;" style="color: white;  font-size: 20%; padding-right: 40px" id="manuinbox"></Label>
         </ActionItem>
         <ActionItem
             android:visibility="visible"
@@ -34,28 +42,18 @@
             android:horizontalAlignment="center"
             id="staction"
             >
-            <Image src="~/img/logo.png" class="action-image" width="50" height="50" ios:style="margin-top: -50px"></Image>
+            <Image src="~/img/logo.png" class="action-image" width="50" height="50" ios:style="margin-top: -50px" id="logoHome"></Image>
             <Label text="" class="action-label h2" color="white" ios:style="margin-top: -40px"></Label>
         </StackLayout>
     </ActionBar>
     <GridLayout class="page__content">
-        <lv:RadListView items="{{ myObservableArray }}" class="list-group" separatorColor="#607d8b" rowHeight="auto" height= "100%" id="listView"
+        <lv:RadListView items="{{ myObservableArray }}" class="list-group fadein" separatorColor="#607d8b" rowHeight="auto" height= "100%" id="listView"
             selectionBehavior="None" 
             itemSwipeProgressEnded="onSwipeCellFinished"
             itemSwipeProgressStarted="onSwipeCellStarted" 
             itemSwipeProgressChanged="onSwipeCellProgressChanged"
             itemSwiping="onItemSwiping" 
             swipeActions="true" pullToRefresh="true" pullToRefreshInitiated="{{onPullToRefreshInitiated}}">
-            <lv:RadListView.itemSwipeTemplate>
-                <GridLayout columns="auto, *" >
-                    <StackLayout id="mark-view" col="1" style="background-color: #607d8b;" tap="onLeftSwipeClick" paddingLeft="16" paddingRight="16" orientation="horizontal">
-                        <Label text="Označi pročitano" style="text-size: 20" verticalAlignment="center" horizontalAlignment="center"/>
-                    </StackLayout>
-                    <StackLayout id="delete-view" col="0" style="background-color: #194961;" tap="onRightSwipeClick"  paddingLeft="16" paddingRight="16" orientation="horizontal">
-                        <Label text="Obriši" style="text-size: 20" verticalAlignment="center" horizontalAlignment="center" />
-                    </StackLayout>
-                </GridLayout>
-            </lv:RadListView.itemSwipeTemplate>
             <lv:RadListView.listViewLayout>
                 <lv:ListViewLinearLayout scrollDirection="Vertical" itemInsertAnimation="Fade" itemDeleteAnimation="Slide"/>
             </lv:RadListView.listViewLayout>

@@ -14,6 +14,8 @@ export function onNavigatingTo (args) {
   let manuinbox = page.getViewById('manuinbox')
   let listView = page.getViewById('listView')
 
+
+
   async function asyncCall () {
     //console.log('calling')
     const result = await inboxMeniIkona()
@@ -66,6 +68,10 @@ export function onNavigatingTo (args) {
         })
         myObservableArray = new ObservableArray(res)
         page.bindingContext.set('myObservableArray', myObservableArray)
+        listView.animate({
+          opacity: 1,
+          duration: 700
+        })
       })
       .catch(error => console.error('FETCH ERROR:', error))
   }
@@ -80,6 +86,20 @@ export function onNavigatingTo (args) {
       listView.notifyPullToRefreshFinished()
     }, 1000)
   })
+
+
+  let logoHome = page.getViewById('logoHome')
+  logoHome.on('tap', args => {
+    console.log('logoHome')
+
+    Frame.topmost().navigate({
+      moduleName: 'home/home-page',
+      transition: {
+        name: 'fade'
+      }
+    })
+  })
+
 }
 
 export function onDrawerButtonTap (args) {
@@ -87,23 +107,3 @@ export function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
-// export function onLeftSwipeClick (args) {
-//   const listView = Frame.topmost().currentPage.getViewById('listView')
-//   console.log('Označi pročitano')
-//   let clickedItem = args.object.bindingContext
-//   console.log(clickedItem)
-
-//   listView.notifySwipeToExecuteFinished()
-// }
-
-// export function onRightSwipeClick (args) {
-//   const listView = Frame.topmost().currentPage.getViewById('listView')
-//   console.log('Obriši Swipe Klik')
-//   //const viewModel = listView.bindingContext;
-//   let clickedItem = args.object.bindingContext
-//   console.log(clickedItem)
-//   //viewModel.myObservableArray.splice(viewModel.myObservableArray.indexOf(args.object.bindingContext), 1);
-//   listView.notifySwipeToExecuteFinished()
-// }
-
-//export function onPullToRefreshInitiated (args) {}

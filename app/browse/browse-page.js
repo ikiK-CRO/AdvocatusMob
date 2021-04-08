@@ -250,6 +250,19 @@ export function onNavigatingTo (args) {
     btn.style.visibility = 'visible'
     page.getViewById('ikona').style.visibility = 'visible'
   })
+
+
+  let logoHome = page.getViewById('logoHome')
+  logoHome.on('tap', args => {
+    console.log('logoHome')
+
+    Frame.topmost().navigate({
+      moduleName: 'home/home-page',
+      transition: {
+        name: 'fade'
+      }
+    })
+  })
 }
 
 export function onDrawerButtonTap (args) {
