@@ -263,6 +263,15 @@ export function onNavigatingTo (args) {
       }
     })
   })
+
+  let manuinfo = page.getViewById('manuinfo')
+  manuinfo.on('tap', args => {
+    console.log('manuinfo')
+  })
+
+
+
+
 }
 
 export function onDrawerButtonTap (args) {

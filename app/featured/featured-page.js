@@ -100,6 +100,12 @@ export function onNavigatingTo (args) {
     })
   })
 
+  let manuinfo = page.getViewById('manuinfo')
+  manuinfo.on('tap', args => {
+    console.log('info ikona')
+    console.log(manuinfo.id)
+  })
+
 }
 
 export function onDrawerButtonTap (args) {
@@ -107,3 +113,10 @@ export function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
+export function onItemTap (args) {
+  //console.log("Touch arguments: ", args);
+  var tappedView = args.view,
+    tappedItem = tappedView.bindingContext
+  console.log(tappedItem)
+  console.log(tappedItem.id)
+}

@@ -53,14 +53,15 @@
             itemSwipeProgressStarted="onSwipeCellStarted" 
             itemSwipeProgressChanged="onSwipeCellProgressChanged"
             itemSwiping="onItemSwiping" 
-            swipeActions="true" pullToRefresh="true" pullToRefreshInitiated="{{onPullToRefreshInitiated}}">
+            swipeActions="true" pullToRefresh="true" pullToRefreshInitiated="{{onPullToRefreshInitiated}}" 
+            itemTap="onItemTap">
             <lv:RadListView.listViewLayout>
                 <lv:ListViewLinearLayout scrollDirection="Vertical" itemInsertAnimation="Fade" itemDeleteAnimation="Slide"/>
             </lv:RadListView.listViewLayout>
-            <lv:RadListView.itemTemplate>
-                <StackLayout orientation="vertical" class="list-group-item" >
-                    <Label fontSize="10" text="{{ itemName || '...' }}" textWrap="true"  class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 10px; font-style: italic; " />
-                    <Label fontSize="14" text="{{ itemDescription || '...'}}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 0px; " />
+            <lv:RadListView.itemTemplate >
+                <StackLayout orientation="vertical" class="list-group-item" style="margin: 0px; padding: 0px" >
+                    <Label fontSize="10" text="{{ itemName || '...' }}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 10px; font-style: italic; " />
+                    <Label fontSize="14" text="{{ itemDescription || '...'}}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 0px; background-color:white; border-color: black; border-width: 1px;  border-radius: 6px; margin-right: 20px; margin-left: 20px  " androidElevation="5"/>
                     <StackLayout class="hr m-0"></StackLayout>
                 </StackLayout>
             </lv:RadListView.itemTemplate>

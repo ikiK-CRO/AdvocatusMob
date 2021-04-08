@@ -20,7 +20,7 @@
             ios.position="right"
             android.position="actionBar"
             >
-            <Label class="fas fa-3x" text="&#xf05a;" style="color: white;  font-size: 20%; padding-right: 40px" id="manuinfo"></Label>
+            <Label class="fas fa-3x" text="&#xf05a;" style="color: white;  font-size: 20%; padding-right: 40px" id="manuinfo" data-atrr="test" atrr="test"></Label>
         </ActionItem>
         <ActionItem
             android:visibility="visible"
