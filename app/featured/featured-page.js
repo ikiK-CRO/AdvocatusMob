@@ -9,10 +9,10 @@ import { inboxMeniIkona } from '~/app'
 import { FeaturedViewModel } from './featured-view-model'
 
 const LoadingIndicator = require('@nstudio/nativescript-loading-indicator')
-  .LoadingIndicator;
-const Mode = require('@nstudio/nativescript-loading-indicator').Mode;
+  .LoadingIndicator
+const Mode = require('@nstudio/nativescript-loading-indicator').Mode
 
-const loader = new LoadingIndicator();
+const loader = new LoadingIndicator()
 
 // optional options
 // android and ios have some platform specific options
@@ -27,7 +27,7 @@ const options = {
   // hideBezel will override this if true
   backgroundColor: '#607d8b',
   userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
-  hideBezel: false, // default false, can hide the surrounding bezel
+  hideBezel: false // default false, can hide the surrounding bezel
   //mode: Mode.AnnularDeterminate, // see options below
   // android: {
   //   view: android.view.View, // Target view to show on top of (Defaults to entire window)
@@ -39,7 +39,7 @@ const options = {
   // ios: {
   //   view: UIView, // Target view to show on top of (Defaults to entire window)
   // },
-};
+}
 // loader.show(options); // options is optional
 
 // // Do whatever it is you want to do while the loader is showing, then
@@ -48,9 +48,7 @@ const options = {
 // }, 3000);
 
 export function onNavigatingTo (args) {
-
   loader.show(options)
-
 
   const page = args.object
   page.bindingContext = new FeaturedViewModel()
@@ -74,14 +72,18 @@ export function onNavigatingTo (args) {
       manuinbox.color = 'rgb(255, 136, 0)'
 
       const animation1 = manuinbox.createAnimation({
-        opacity: 0.1,
-        duration: 1500
+        opacity: 0.3,
+        duration: 1000
       })
       const animation2 = manuinbox.createAnimation({
         opacity: 1,
-        duration: 1500
+        duration: 1000
       })
       animation1.play().then(() => {
+        return animation2.play()
+      }).then(() => {
+        return animation1.play()
+      }).then(() => {
         return animation2.play()
       })
     }
@@ -89,8 +91,9 @@ export function onNavigatingTo (args) {
   asyncCall()
   setInterval(function () {
     asyncCall()
-  }, 3000)
+  }, 4000)
 
+  
   let res = []
   let myObservableArray
   let url = 'https://advocatus-test.appdiz-informatika.hr/api/api_V1.php'
@@ -126,7 +129,7 @@ export function onNavigatingTo (args) {
           opacity: 1,
           duration: 700
         })
-        loader.hide();
+        loader.hide()
       })
       .catch(error => console.error('FETCH ERROR:', error))
   }
@@ -198,8 +201,3 @@ function strip (text) {
 
   return res
 }
-
-
-
-
-

@@ -15,9 +15,19 @@ export function onNavigatingTo (args) {
     if (result != '0') {
       manuinbox.color = 'rgb(255, 136, 0)'
 
-      const animation1 = manuinbox.createAnimation({ opacity: 0.1, duration: 1500})
-      const animation2 = manuinbox.createAnimation({ opacity: 1, duration: 1500 })
+      const animation1 = manuinbox.createAnimation({
+        opacity: 0.3,
+        duration: 1000
+      })
+      const animation2 = manuinbox.createAnimation({
+        opacity: 1,
+        duration: 1000
+      })
       animation1.play().then(() => {
+        return animation2.play()
+      }).then(() => {
+        return animation1.play()
+      }).then(() => {
         return animation2.play()
       })
     }
@@ -25,7 +35,7 @@ export function onNavigatingTo (args) {
   asyncCall()
   setInterval(function () {
     asyncCall()
-  }, 3000)
+  }, 4000)
 
   manuinbox.on('tap', args => {
     console.log('manuinbox')
