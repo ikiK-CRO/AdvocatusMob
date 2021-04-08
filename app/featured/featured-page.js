@@ -14,8 +14,6 @@ export function onNavigatingTo (args) {
   let manuinbox = page.getViewById('manuinbox')
   let listView = page.getViewById('listView')
 
-
-
   async function asyncCall () {
     //console.log('calling')
     const result = await inboxMeniIkona()
@@ -58,10 +56,14 @@ export function onNavigatingTo (args) {
       .then(data => {
         //console.log(data)
         res = []
+
         data.forEach(e => {
+          let text = e['notif_sadrzaj'];
+          let h = strip(text)
+          h = h.replace(":    PRIKAŽI", "")
           res.push({
             itemName: e['notif_dat'],
-            itemDescription: e['notif_sadrzaj'],
+            itemDescription: h,
             procitan: e['notif_stanje'],
             id: e['notif_id']
           })
@@ -87,7 +89,6 @@ export function onNavigatingTo (args) {
     }, 1000)
   })
 
-
   let logoHome = page.getViewById('logoHome')
   logoHome.on('tap', args => {
     console.log('logoHome')
@@ -105,7 +106,6 @@ export function onNavigatingTo (args) {
     console.log('info ikona')
     console.log(manuinfo.id)
   })
-
 }
 
 export function onDrawerButtonTap (args) {
@@ -119,4 +119,17 @@ export function onItemTap (args) {
     tappedItem = tappedView.bindingContext
   console.log(tappedItem)
   console.log(tappedItem.id)
+}
+
+function strip (text) {
+  let res = text
+    .replace(/<style[^>]*>.*<\/style>/gm, '')
+    // Remove script tags and content
+    .replace(/<script[^>]*>.*<\/script>/gm, '')
+    // Remove all opening, closing and orphan HTML tags
+    .replace(/<[^>]+>/gm, '')
+    // Remove leading spaces and repeated CR/LF
+    .replace(/([\r\n]+ +)+/gm, '')
+
+  return res
 }

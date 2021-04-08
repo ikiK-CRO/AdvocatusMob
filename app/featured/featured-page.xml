@@ -53,7 +53,7 @@
             itemSwipeProgressStarted="onSwipeCellStarted" 
             itemSwipeProgressChanged="onSwipeCellProgressChanged"
             itemSwiping="onItemSwiping" 
-            swipeActions="true" pullToRefresh="true" pullToRefreshInitiated="{{onPullToRefreshInitiated}}" 
+            swipeActions="false" pullToRefresh="true" pullToRefreshInitiated="{{onPullToRefreshInitiated}}" 
             itemTap="onItemTap">
             <lv:RadListView.listViewLayout>
                 <lv:ListViewLinearLayout scrollDirection="Vertical" itemInsertAnimation="Fade" itemDeleteAnimation="Slide"/>
