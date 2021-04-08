@@ -44,6 +44,7 @@
     "@nativescript/theme": "~3.0.1",
     "nativescript-ui-listview": "^9.1.0",
     "nativescript-ui-sidedrawer": "~9.0.3",
+    "nativescript-windowed-modal": "^7.0.0",
     "rxjs": "^6.6.7"
   },
   "devDependencies": {

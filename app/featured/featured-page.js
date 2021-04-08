@@ -60,7 +60,8 @@ export function onNavigatingTo (args) {
           res.push({
             itemName: e['notif_dat'],
             itemDescription: e['notif_sadrzaj'],
-            procitan: e['notif_stanje']
+            procitan: e['notif_stanje'],
+            id: e['notif_id']
           })
         })
         myObservableArray = new ObservableArray(res)
@@ -69,28 +70,16 @@ export function onNavigatingTo (args) {
       .catch(error => console.error('FETCH ERROR:', error))
   }
 
-  //   let i = 1
-  //   setInterval(function () {
-  //     i++
-  //     myObservableArray.push({
-  //       itemName: i,
-  //       itemDescription: i,
-  //       procitan: i
-  //     })
-  // console.log(i)
-  //     }, 3000)
-
   getPoruke()
 
   listView.on('pullToRefreshInitiated', function (eventData) {
-    console.log(true)
-    console.log(myObservableArray)
+    //console.log(true)
+    //console.log(myObservableArray)
     getPoruke()
     setTimeout(function () {
       listView.notifyPullToRefreshFinished()
     }, 1000)
   })
-
 }
 
 export function onDrawerButtonTap (args) {

@@ -47,11 +47,11 @@
             itemSwiping="onItemSwiping" 
             swipeActions="true" pullToRefresh="true" pullToRefreshInitiated="{{onPullToRefreshInitiated}}">
             <lv:RadListView.itemSwipeTemplate>
-                <GridLayout columns="auto, *, auto" backgroundColor="#fcf9f1">
-                    <StackLayout id="mark-view" col="0" style="background-color: #607d8b;" tap="onLeftSwipeClick" paddingLeft="16" paddingRight="16" orientation="horizontal">
+                <GridLayout columns="auto, *" >
+                    <StackLayout id="mark-view" col="1" style="background-color: #607d8b;" tap="onLeftSwipeClick" paddingLeft="16" paddingRight="16" orientation="horizontal">
                         <Label text="Označi pročitano" style="text-size: 20" verticalAlignment="center" horizontalAlignment="center"/>
                     </StackLayout>
-                    <StackLayout id="delete-view" col="2" style="background-color: #194961;" tap="onRightSwipeClick"  paddingLeft="16" paddingRight="16" orientation="horizontal">
+                    <StackLayout id="delete-view" col="0" style="background-color: #194961;" tap="onRightSwipeClick"  paddingLeft="16" paddingRight="16" orientation="horizontal">
                         <Label text="Obriši" style="text-size: 20" verticalAlignment="center" horizontalAlignment="center" />
                     </StackLayout>
                 </GridLayout>
@@ -60,9 +60,9 @@
                 <lv:ListViewLinearLayout scrollDirection="Vertical" itemInsertAnimation="Fade" itemDeleteAnimation="Slide"/>
             </lv:RadListView.listViewLayout>
             <lv:RadListView.itemTemplate>
-                <StackLayout orientation="vertical" class="list-group-item">
-                    <Label fontSize="8" text="{{ itemName || '...' }}" textWrap="true" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}"  />
-                    <Label fontSize="12" text="{{ itemDescription || '...'}}" textWrap="true"  class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}"  />
+                <StackLayout orientation="vertical" class="list-group-item" >
+                    <Label fontSize="10" text="{{ itemName || '...' }}" textWrap="true"  class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 10px; font-style: italic; " />
+                    <Label fontSize="14" text="{{ itemDescription || '...'}}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 0px; " />
                     <StackLayout class="hr m-0"></StackLayout>
                 </StackLayout>
             </lv:RadListView.itemTemplate>

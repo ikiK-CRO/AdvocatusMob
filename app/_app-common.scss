@@ -77,7 +77,7 @@ ActionBar {
   font-size: 130%;
 }
 button {
-  box-shadow: 9px 9px 9px #888888;
+  box-shadow: 6px 6px 6px #888888;
 }
 
 TextField {
@@ -97,17 +97,63 @@ TextField {
   font-size: 13%;
 }
 
-[atr='ne'] {
-  color:red;
-  font-weight: bold;
-} 
+// [atr='ne'] {
+//   color:red;
+//   font-weight: bold;
+// } 
 
 
-.neprocitanaporuka{
-  color:red;
-  font-weight: bold;
-}
 
-.procitanaporuka {
+.ns-light .procitanaporuka {
   color:black;
 }
+
+.ns-light .neprocitanaporuka{
+  color:red;
+  font-weight: bold;
+}
+
+
+.ns-dark .procitanaporuka {
+  color:white;
+}
+
+.ns-dark .neprocitanaporuka{
+  color:red;
+  font-weight: bold;
+
+}
+.ns-dark .list-group-item{
+  background-color: rgb(51, 50, 50);
+  color: white;
+}
+.ns-dark .list-group-item-heading, .ns-dark .list-group-item-text{
+  color: white;
+}
+
+.ns-light .list-group-item{
+  background-color: #fcf9f1;
+  color: black;
+}
+.ns-light .list-group-item-heading, .ns-light .list-group-item-text{
+  color: black;
+}
+// .modal {
+//   margin: 20;
+//   margin-top: 35;
+//   border-radius: 8;
+//   horizontal-align: center;
+//   vertical-align: middle;
+//   background-color:var(--glavnab);
+//   color: white;
+//   min-width: 90%;
+//   min-height: 90%;
+//   box-shadow: 6px 6px 6px #888888;
+
+// }
+
+// .modal-container {
+//   top: 0;
+//   padding: 25;
+//   padding-bottom: 10;
+// }

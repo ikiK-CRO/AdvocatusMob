@@ -39,6 +39,10 @@ export async function inboxMeniIkona () {
     .catch(error => console.error('FETCH ERROR:', error))
 }
 
+var windowedModal = require("nativescript-windowed-modal")
+windowedModal.overrideModalViewMethod()
+
+
 Application.run({ moduleName: 'app-root/app-root' })
 
 /*
