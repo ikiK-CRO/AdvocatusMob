@@ -2,22 +2,74 @@ import {
   Application,
   ObservableArray,
   Observable,
-  Frame
+  Frame,
+  Dialogs
 } from '@nativescript/core'
 import { inboxMeniIkona } from '~/app'
 import { FeaturedViewModel } from './featured-view-model'
 
+const LoadingIndicator = require('@nstudio/nativescript-loading-indicator')
+  .LoadingIndicator;
+const Mode = require('@nstudio/nativescript-loading-indicator').Mode;
+
+const loader = new LoadingIndicator();
+
+// optional options
+// android and ios have some platform specific options
+const options = {
+  message: 'Učitavanje...',
+  details: '',
+  progress: 0.65,
+  margin: 50,
+  dimBackground: true,
+  color: 'white', // color of indicator and labels
+  // background box around indicator
+  // hideBezel will override this if true
+  backgroundColor: '#607d8b',
+  userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+  hideBezel: false, // default false, can hide the surrounding bezel
+  //mode: Mode.AnnularDeterminate, // see options below
+  // android: {
+  //   view: android.view.View, // Target view to show on top of (Defaults to entire window)
+  //   cancelable: true,
+  //   cancelListener: function (dialog) {
+  //     console.log('Loading cancelled');
+  //   },
+  // },
+  // ios: {
+  //   view: UIView, // Target view to show on top of (Defaults to entire window)
+  // },
+};
+// loader.show(options); // options is optional
+
+// // Do whatever it is you want to do while the loader is showing, then
+// setTimeout(() => {
+//   loader.hide();
+// }, 3000);
+
 export function onNavigatingTo (args) {
+
+  loader.show(options)
+
+
   const page = args.object
   page.bindingContext = new FeaturedViewModel()
 
   let manuinbox = page.getViewById('manuinbox')
   let listView = page.getViewById('listView')
+  let inprovjera
+  let result
 
   async function asyncCall () {
     //console.log('calling')
-    const result = await inboxMeniIkona()
-    //console.log(result)
+    result = await inboxMeniIkona()
+
+    if (isNaN(result) === false && inprovjera != result) {
+      inprovjera = result
+      getPoruke()
+      console.log('promjena')
+    }
+
     if (result != '0') {
       manuinbox.color = 'rgb(255, 136, 0)'
 
@@ -42,7 +94,7 @@ export function onNavigatingTo (args) {
   let res = []
   let myObservableArray
   let url = 'https://advocatus-test.appdiz-informatika.hr/api/api_V1.php'
-  let req = url + '?getporuke=kiki3'
+  let req = url + '?getporuke=kiki'
 
   function getPoruke () {
     fetch(req)
@@ -58,9 +110,9 @@ export function onNavigatingTo (args) {
         res = []
 
         data.forEach(e => {
-          let text = e['notif_sadrzaj'];
+          let text = e['notif_sadrzaj']
           let h = strip(text)
-          h = h.replace(":    PRIKAŽI", "")
+          h = h.replace(':    PRIKAŽI', '')
           res.push({
             itemName: e['notif_dat'],
             itemDescription: h,
@@ -74,11 +126,10 @@ export function onNavigatingTo (args) {
           opacity: 1,
           duration: 700
         })
+        loader.hide();
       })
       .catch(error => console.error('FETCH ERROR:', error))
   }
-
-  getPoruke()
 
   listView.on('pullToRefreshInitiated', function (eventData) {
     //console.log(true)
@@ -104,7 +155,21 @@ export function onNavigatingTo (args) {
   let manuinfo = page.getViewById('manuinfo')
   manuinfo.on('tap', args => {
     console.log('info ikona')
-    console.log(manuinfo.id)
+    showAlertDialog()
+  })
+}
+
+export function showAlertDialog () {
+  const alertOptions = {
+    title: 'INFO',
+    message:
+      '- LISTA SE SAMA OSVJEŽUJE NA DOBIVENU PORUKU\n\n- POVUCI PREMA DOLJE ZA RUČNO OSVJEŽITI LISTU \n\n- JEDAN TAP NA PORUKU ZA OZNAČITI KAO PROČITANO \n\n- DVA TAP-A ZA OBRISATI PORUKU',
+    okButtonText: 'OK',
+    cancelable: false // [Android only] Gets or sets if the dialog can be canceled by taping outside of the dialog.
+  }
+
+  Dialogs.alert(alertOptions).then(() => {
+    console.log('OK Info')
   })
 }
 
@@ -133,3 +198,8 @@ function strip (text) {
 
   return res
 }
+
+
+
+
+

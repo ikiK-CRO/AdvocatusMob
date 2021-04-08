@@ -4,6 +4,47 @@ import { BrowseViewModel } from './browse-view-model'
 import { Label, GestureTypes } from '@nativescript/core'
 import { Enums } from '@nativescript/core'
 
+
+const LoadingIndicator = require('@nstudio/nativescript-loading-indicator')
+  .LoadingIndicator;
+const Mode = require('@nstudio/nativescript-loading-indicator').Mode;
+
+const loader = new LoadingIndicator();
+
+// optional options
+// android and ios have some platform specific options
+const options = {
+  message: 'Učitavanje...',
+  details: '',
+  progress: 0.65,
+  margin: 50,
+  dimBackground: true,
+  color: 'white', // color of indicator and labels
+  // background box around indicator
+  // hideBezel will override this if true
+  backgroundColor: '#607d8b',
+  userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
+  hideBezel: false, // default false, can hide the surrounding bezel
+  //mode: Mode.AnnularDeterminate, // see options below
+  // android: {
+  //   view: android.view.View, // Target view to show on top of (Defaults to entire window)
+  //   cancelable: true,
+  //   cancelListener: function (dialog) {
+  //     console.log('Loading cancelled');
+  //   },
+  // },
+  // ios: {
+  //   view: UIView, // Target view to show on top of (Defaults to entire window)
+  // },
+};
+// loader.show(options); // options is optional
+
+// // Do whatever it is you want to do while the loader is showing, then
+// setTimeout(() => {
+//   loader.hide();
+// }, 3000);
+
+
 export function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new BrowseViewModel()
@@ -79,6 +120,7 @@ export function onNavigatingTo (args) {
 
   btn.on(GestureTypes.tap, function (args) {
     //console.log('Tap')
+    loader.show(options)
 
     let res = page.getViewById('val').text
     if (res == '') {
@@ -235,6 +277,7 @@ export function onNavigatingTo (args) {
             height: '96%',
             duration: 1000
           })
+          loader.hide();
         })
         .catch(error => console.error('FETCH ERROR:', error))
     }

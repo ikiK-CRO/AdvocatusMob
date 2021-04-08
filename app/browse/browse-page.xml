@@ -1,6 +1,8 @@
 <Page
     navigatingTo="onNavigatingTo"
-    xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:modal="nativescript-windowed-modal">
+    xmlns:modal="nativescript-windowed-modal"
+    xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:modal="nativescript-windowed-modal"
+    >
     <ActionBar>
         <!--
         Use the NavigationButton as a side-drawer button in Android
