@@ -63,8 +63,8 @@
             </lv:RadListView.listViewLayout>
             <lv:RadListView.itemTemplate >
                 <StackLayout orientation="vertical" class="list-group-item" style="margin: 0px; padding: 0px;">
-                    <Label fontSize="10" text="{{ itemName || '...' }}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 10px; font-style: italic; " />
-                    <Label fontSize="14" text="{{ itemDescription || '...'}}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka' : 'procitanaporuka' }}" style="padding-top: 0px;padding-bottom: 0px; background-color:white; border-color: black; border-width: 1px;  border-radius: 6px; margin-right: 20px; margin-left: 20px  " androidElevation="3"/>
+                    <Label fontSize="10" text="{{ itemName || '...' }}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka-time' : 'procitanaporuka-time' }}" style="padding-top: 0px;padding-bottom: 10px; font-style: italic; " />
+                    <Label fontSize="14" text="{{ itemDescription || '...'}}" textWrap="true" id="{{ id }}" class="{{ procitan == 'ne' ? 'neprocitanaporuka-sadrzaj' : 'procitanaporuka-sadrzaj' }}" style="padding-top: 0px;padding-bottom: 0px; border-color: black; border-width: 1px;  border-radius: 6px; margin-right: 20px; margin-left: 20px  " androidElevation="3"/>
                     <StackLayout class="hr m-0"></StackLayout>
                 </StackLayout>
             </lv:RadListView.itemTemplate>

@@ -47,11 +47,13 @@
             <Label text="" class="action-label h2" color="white" ios:style="margin-top: -40px"></Label>
         </StackLayout>
     </ActionBar>
-    <StackLayout class="page__content">
+    <StackLayout class="page__content" tap="clearTextfieldFocus">
         <ListPicker items="{{ pretraga }}" selectedIndex="0" loaded="onListPickerLoaded"  id="kategorije"/>
         <SearchBar class="" hint="Naš broj..." returnKeyType="done" autocorrect="false" autocapitalizationType="sentences" id="val" width="40%" style="text-align:center" />
         <Button text="TRAŽI" class="btn btn-primary btn-rounded-sm" style="width: 36%" id="btn"/>
-        <Button text="&#xf002;" class="btn btn-primary fas fadein" style="width: 100%; margin-top: -20px; font-size: 35%; box-shadow: 0px 0px 0px transparent;" height="14%" id="show" />
+        <Button text="&#xf002;" class="btn btn-primary btn-rounded-sm fas fadein" style="width: 50%; margin-top: 20px; font-size: 25%;" height="" id="show" />
+        <Label class="" text="{{valPretraga}}" id="valPretraga" class="h3" style="margin-top: 20px; font-weight:bold" horizontalAlignment="center"></Label>
+
         <!-- <HtmlView html="{{ rezultat }}" class="text-left" textWrap="true" loaded="onHtmlLoaded"/> -->
         <ActivityIndicator busy="true" id="busy" visibility="collapsed"></ActivityIndicator>
         <StackLayout class="hr m-10"></StackLayout>

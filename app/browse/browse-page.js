@@ -4,12 +4,11 @@ import { BrowseViewModel } from './browse-view-model'
 import { Label, GestureTypes } from '@nativescript/core'
 import { Enums } from '@nativescript/core'
 
-
 const LoadingIndicator = require('@nstudio/nativescript-loading-indicator')
-  .LoadingIndicator;
-const Mode = require('@nstudio/nativescript-loading-indicator').Mode;
+  .LoadingIndicator
+const Mode = require('@nstudio/nativescript-loading-indicator').Mode
 
-const loader = new LoadingIndicator();
+const loader = new LoadingIndicator()
 
 // optional options
 // android and ios have some platform specific options
@@ -24,7 +23,7 @@ const options = {
   // hideBezel will override this if true
   backgroundColor: '#607d8b',
   userInteractionEnabled: false, // default true. Set false so that the touches will fall through it.
-  hideBezel: false, // default false, can hide the surrounding bezel
+  hideBezel: false // default false, can hide the surrounding bezel
   //mode: Mode.AnnularDeterminate, // see options below
   // android: {
   //   view: android.view.View, // Target view to show on top of (Defaults to entire window)
@@ -36,14 +35,13 @@ const options = {
   // ios: {
   //   view: UIView, // Target view to show on top of (Defaults to entire window)
   // },
-};
+}
 // loader.show(options); // options is optional
 
 // // Do whatever it is you want to do while the loader is showing, then
 // setTimeout(() => {
 //   loader.hide();
 // }, 3000);
-
 
 export function onNavigatingTo (args) {
   const page = args.object
@@ -66,20 +64,24 @@ export function onNavigatingTo (args) {
         opacity: 1,
         duration: 1000
       })
-      animation1.play().then(() => {
-        return animation2.play()
-      }).then(() => {
-        return animation1.play()
-      }).then(() => {
-        return animation2.play()
-      })
+      animation1
+        .play()
+        .then(() => {
+          return animation2.play()
+        })
+        .then(() => {
+          return animation1.play()
+        })
+        .then(() => {
+          return animation2.play()
+        })
     }
   }
   asyncCall()
   setInterval(function () {
     asyncCall()
   }, 4000)
-  
+
   manuinbox.on('tap', args => {
     console.log('manuinbox')
 
@@ -131,7 +133,7 @@ export function onNavigatingTo (args) {
     if (res == '') {
       showAlertDialog()
     } else {
-      page.getViewById('busy').style.visibility = 'visible'
+      //page.getViewById('busy').style.visibility = 'visible'
 
       let listView = page.getViewById('listView')
       let url = 'https://advocatus-test.appdiz-informatika.hr/api/api_V1.php'
@@ -258,7 +260,7 @@ export function onNavigatingTo (args) {
           page.getViewById('val').dismissSoftInput()
           // page.bindingContext.set('rezultat', getMessage(result))
           // page.bindingContext.set('rezultat', objNovi)
-          page.getViewById('busy').style.visibility = 'collapse'
+          //page.getViewById('busy').style.visibility = 'collapse'
           page.getViewById('ikona').style.visibility = 'collapsed'
 
           let hide = [kategorije, input, btn]
@@ -276,13 +278,14 @@ export function onNavigatingTo (args) {
             duration: 700
           })
 
+          page.bindingContext.set('valPretraga', res)
           page.bindingContext.set('rezultat', objNovi)
 
           lista.animate({
-            height: '96%',
+            height: '97%',
             duration: 1000
           })
-          loader.hide();
+          loader.hide()
         })
         .catch(error => console.error('FETCH ERROR:', error))
     }
@@ -298,7 +301,6 @@ export function onNavigatingTo (args) {
     btn.style.visibility = 'visible'
     page.getViewById('ikona').style.visibility = 'visible'
   })
-
 
   let logoHome = page.getViewById('logoHome')
   logoHome.on('tap', args => {
@@ -316,10 +318,6 @@ export function onNavigatingTo (args) {
   manuinfo.on('tap', args => {
     console.log('manuinfo')
   })
-
-
-
-
 }
 
 export function onDrawerButtonTap (args) {
@@ -347,3 +345,10 @@ export function showAlertDialog () {
     console.log('alert')
   })
 }
+
+function clearTextfieldFocus (args) {
+  var layout = args.object
+  var myTextfield = layout.getViewById('val')
+  myTextfield.android.clearFocus()
+}
+exports.clearTextfieldFocus = clearTextfieldFocus

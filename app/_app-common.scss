@@ -11,7 +11,12 @@
 .ns-light {
 }
 
-.ns-dark {
+.ns-dark{
+  background-color: rgb(51, 50, 50);
+}
+
+.ns-dark #logoHome{
+  background-color: transparent;
 }
 
 .ns-light #meni-logo-bjeli {
@@ -103,26 +108,54 @@ TextField {
 // } 
 
 
+.ns-light .procitanaporuka-sadrzaj {
+  color:black;
+  background-color: white;
+}
 
-.ns-light .procitanaporuka {
+.ns-light .neprocitanaporuka-sadrzaj{
+  color:red;
+  font-weight: bold;
+  background-color: white;
+}
+
+
+.ns-dark .procitanaporuka-sadrzaj {
+  color:white;
+  background-color: var(--glavnab-dark);
+}
+
+.ns-dark .neprocitanaporuka-sadrzaj{
+  color:red;
+  font-weight: bold;
+  background-color: var(--glavnab-dark);
+}
+
+.ns-light .procitanaporuka-time {
   color:black;
 }
 
-.ns-light .neprocitanaporuka{
+.ns-light .neprocitanaporuka-time{
   color:red;
   font-weight: bold;
 }
 
 
-.ns-dark .procitanaporuka {
+.ns-dark .procitanaporuka-time {
   color:white;
+  background-color: rgb(51, 50, 50);
 }
 
-.ns-dark .neprocitanaporuka{
+.ns-dark .neprocitanaporuka-time{
   color:red;
   font-weight: bold;
 
 }
+
+
+
+
+
 .ns-dark .list-group-item{
   background-color: rgb(51, 50, 50);
   color: white;
