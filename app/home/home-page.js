@@ -47,9 +47,27 @@ export function onNavigatingTo (args) {
       }
     })
   })
+
+
+  var SecureStorage = require("@nativescript/secure-storage").SecureStorage;
+  //import { secureStorage } from '@nativescript/secure-storage'
+  // instantiate the plugin
+  let secureStorage = new SecureStorage();
+  
+  // async
+  secureStorage.set({
+    key: "test",
+    value: "test value"
+  }).then(success => console.log("Successfully set a value? " + success));
+
+
+
+
+
 }
 
 export function onDrawerButtonTap (args) {
   const sideDrawer = Application.getRootView()
   sideDrawer.showDrawer()
 }
+

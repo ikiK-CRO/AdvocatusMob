@@ -318,6 +318,24 @@ export function onNavigatingTo (args) {
   manuinfo.on('tap', args => {
     console.log('manuinfo')
   })
+
+
+
+
+  var SecureStorage = require("@nativescript/secure-storage").SecureStorage;
+  let secureStorage = new SecureStorage();
+  
+  
+  secureStorage.get({
+    key: "test"
+  }).then(
+    function(value) {
+      console.log("Got value: " + value);
+    }
+  );
+
+
+
 }
 
 export function onDrawerButtonTap (args) {
@@ -352,3 +370,6 @@ function clearTextfieldFocus (args) {
   myTextfield.android.clearFocus()
 }
 exports.clearTextfieldFocus = clearTextfieldFocus
+
+
+
