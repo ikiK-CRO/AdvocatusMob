@@ -43,12 +43,5 @@
         <Label class="page__content-icon fas" text="&#xf015;"></Label>
         <Label class="page__content-placeholder" text="<!-- David je bedast, na kvadart -->"></Label>
         <Button text="Scan!" tap="scanBarcode" />
-        <Barcode:BarcodeScannerView
-      class="scanner-round"
-      formats="QR_CODE, EAN_13"
-      beepOnScan="true"
-      reportDuplicates="true"
-      preferFrontCamera="false"
-      pause="{{ pause }}" />
     </StackLayout>
 </Page>

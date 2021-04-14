@@ -1,6 +1,7 @@
 import { Frame, Application } from '@nativescript/core'
 import { HomeViewModel } from './home-view-model'
 import { inboxMeniIkona } from '~/app'
+//import { BarcodeScanner } from 'nativescript-barcodescanner'
 
 export function onNavigatingTo (args) {
   const page = args.object
@@ -64,8 +65,6 @@ export function onNavigatingTo (args) {
       value: 'test value'
     })
     .then(success => console.log('Successfully set a value? ' + success))
-
-
 }
 
 export function onDrawerButtonTap (args) {
@@ -73,13 +72,12 @@ export function onDrawerButtonTap (args) {
   sideDrawer.showDrawer()
 }
 
+export function scanBarcode () {
+  var BarcodeScanner = require('nativescript-barcodescanner').BarcodeScanner
+  console.log('csan tap')
+  var barcodescanner = new BarcodeScanner()
+  //barcodescanner.scan(false, true)
 
-
-
-export function scanBarcode() {
-  var BarcodeScanner = require("nativescript-barcodescanner").BarcodeScanner;
-
-  var barcodescanner = new BarcodeScanner();
   barcodescanner.scan({
     formats: "QR_CODE,PDF_417",   // Pass in of you want to restrict scanning to certain types
     //cancelLabel: "EXIT. Also, try the volume buttons!", // iOS only, default 'Close'
@@ -105,5 +103,3 @@ export function scanBarcode() {
       }
   );
 }
-
-
