@@ -1,7 +1,7 @@
 <Page
     navigatingTo="onNavigatingTo"
     xmlns:modal="nativescript-windowed-modal"
-    xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:modal="nativescript-windowed-modal"
+    xmlns="http://schemas.nativescript.org/tns.xsd"
     >
     <ActionBar>
         <!--
