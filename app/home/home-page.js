@@ -77,10 +77,20 @@ export function onNavigatingTo (args) {
       if (value === null) {
         scanBarcode()
       } else {
-        console.log(value)
+        //console.log(value)
+        let a = value.split("2data:")
+        let a2= a[0].split("1data:")
+        let api = a2[1]
+        let korisnik= a[1]
+
+        console.log(api)
+        console.log(korisnik)
       }
     })
 }
+
+
+
 
 export function onDrawerButtonTap (args) {
   const sideDrawer = Application.getRootView()
