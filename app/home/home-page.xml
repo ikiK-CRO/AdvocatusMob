@@ -1,7 +1,6 @@
 <Page
     navigatingTo="onNavigatingTo"
-    xmlns="http://schemas.nativescript.org/tns.xsd"
-    xmlns:Barcode="nativescript-barcodescanner">
+    xmlns="http://schemas.nativescript.org/tns.xsd">
     <ActionBar>
         <!--
         Use the NavigationButton as a side-drawer button in Android
@@ -43,5 +42,6 @@
         <Label class="page__content-icon fas" text="&#xf015;"></Label>
         <Label class="page__content-placeholder" text="<!-- David je bedast, na kvadart -->"></Label>
         <Button text="Scan!" tap="scanBarcode" />
+
     </StackLayout>
 </Page>
