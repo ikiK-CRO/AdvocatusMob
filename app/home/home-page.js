@@ -5,7 +5,10 @@ import { inboxMeniIkona } from '~/app'
 
 import { BarcodeScanner } from "nativescript-barcodescanner";
 ///var BarcodeScanner = require("nativescript-barcodescanner").BarcodeScanner;
-
+var SecureStorage = require('@nativescript/secure-storage').SecureStorage
+//import { secureStorage } from '@nativescript/secure-storage'
+// instantiate the plugin
+let secureStorage = new SecureStorage()
 let reg
 
 
@@ -66,10 +69,7 @@ export function onNavigatingTo (args) {
   //async
   
 
-  var SecureStorage = require('@nativescript/secure-storage').SecureStorage
-  //import { secureStorage } from '@nativescript/secure-storage'
-  // instantiate the plugin
-  let secureStorage = new SecureStorage()
+
 
 
 
@@ -131,10 +131,7 @@ export function scanBarcode () {
           console.log("Scan format: " + result.format);
           console.log("Scan text:   " + result.text);
           req = result.text
-          var SecureStorage = require('@nativescript/secure-storage').SecureStorage
-          //import { secureStorage } from '@nativescript/secure-storage'
-          // instantiate the plugin
-          let secureStorage = new SecureStorage()
+
           console.log(secureStorage)
           secureStorage.set({
             key: 'registracija',
