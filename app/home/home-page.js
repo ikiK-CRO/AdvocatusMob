@@ -6,6 +6,9 @@ import { inboxMeniIkona } from '~/app'
 import { BarcodeScanner } from "nativescript-barcodescanner";
 ///var BarcodeScanner = require("nativescript-barcodescanner").BarcodeScanner;
 
+let reg
+
+
 
 export function onNavigatingTo (args) {
   const page = args.object
@@ -57,18 +60,32 @@ export function onNavigatingTo (args) {
     })
   })
 
+
+
+
+
+  //async
+  
+
   var SecureStorage = require('@nativescript/secure-storage').SecureStorage
   //import { secureStorage } from '@nativescript/secure-storage'
   // instantiate the plugin
   let secureStorage = new SecureStorage()
+  secureStorage.get({
+    key: "registracija"
+  }).then(
+    function(value) {
+      console.log(value);
+      if (value === null){
+        scanBarcode ()
+      }else{
+       console.log(value)
+      }
+    }
+  );
 
-  // async
-  secureStorage
-    .set({
-      key: 'test',
-      value: 'test value'
-    })
-    .then(success => console.log('Successfully set a value? ' + success))
+
+
 }
 
 export function onDrawerButtonTap (args) {
@@ -104,6 +121,17 @@ export function scanBarcode () {
         function(result) {
           console.log("Scan format: " + result.format);
           console.log("Scan text:   " + result.text);
+          req = result.text
+          var SecureStorage = require('@nativescript/secure-storage').SecureStorage
+          //import { secureStorage } from '@nativescript/secure-storage'
+          // instantiate the plugin
+          let secureStorage = new SecureStorage()
+          secureStorage.set({
+            key: 'registracija',
+            value: req
+          })
+          .then(success => console.log('Successfully set a value? ' + success))
+
         },
         function(error) {
           console.log("No scan: " + error);
@@ -135,3 +163,5 @@ export function requestPermission() {
   });
   });
 }
+
+console.log(true)
