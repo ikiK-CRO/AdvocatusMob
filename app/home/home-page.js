@@ -121,7 +121,7 @@ export function scanBarcode () {
           secureStorage
             .set({
               key: 'registracija',
-              value: req
+              value: result.text
             })
             .then(success =>
               console.log('Successfully set a value? ' + success)
