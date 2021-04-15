@@ -63,7 +63,6 @@ export function onNavigatingTo (args) {
 
 
 
-
   //async
   
 
@@ -71,6 +70,16 @@ export function onNavigatingTo (args) {
   //import { secureStorage } from '@nativescript/secure-storage'
   // instantiate the plugin
   let secureStorage = new SecureStorage()
+
+
+
+  // secureStorage.set({
+  //   key: 'registracija',
+  //   value: "test"
+  // })
+  // .then(success => console.log('Successfully set a value? ' + success))
+
+  console.log(secureStorage)
   secureStorage.get({
     key: "registracija"
   }).then(
@@ -126,6 +135,7 @@ export function scanBarcode () {
           //import { secureStorage } from '@nativescript/secure-storage'
           // instantiate the plugin
           let secureStorage = new SecureStorage()
+          console.log(secureStorage)
           secureStorage.set({
             key: 'registracija',
             value: req
