@@ -40,8 +40,8 @@
 
     <StackLayout class="page__content">
         <Label class="page__content-icon fas" text="&#xf015;"></Label>
-        <Label class="page__content-placeholder" text="<!-- David je bedast, na kvadart -->"></Label>
-        <Button text="Scan!" tap="scanBarcode" />
+        <Label class="page__content-placeholder" text="<!-- test -->"></Label>
+       
 
     </StackLayout>
 </Page>

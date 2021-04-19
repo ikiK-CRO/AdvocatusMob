@@ -18,8 +18,8 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
             <StackLayout class="nt-drawer__header" style="background-color: #607d8b">
                 <Image class="nt-drawer__header-image fas t-36" src="font://&#xf2bd;" />
                 <Label class="nt-drawer__header-brand" text="Odvjetnički ured:" />
-                <Label class="nt-drawer__header-brand" text="xxx" />
-                <Label class="nt-drawer__header-footnote" text="Ime prezime" />
+                <Label class="nt-drawer__header-brand" text="{{office}}" id="office"/>
+                <Label class="nt-drawer__header-footnote" text="{{user}}" id="user" />
             </StackLayout>
 
             <ScrollView row="1" id="meni">

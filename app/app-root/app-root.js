@@ -1,7 +1,10 @@
 import { Frame, Application } from '@nativescript/core';
 import { AppRootViewModel } from './app-root-view-model'
 import { inboxMeniIkona } from '~/app'
-
+var SecureStorage = require('@nativescript/secure-storage').SecureStorage
+//import { secureStorage } from '@nativescript/secure-storage'
+// instantiate the plugin
+let secureStorage = new SecureStorage()
 
 
 export function onLoaded(args) {
@@ -9,6 +12,8 @@ export function onLoaded(args) {
   drawerComponent.bindingContext = new AppRootViewModel()
 
   let manuinbox = drawerComponent.getViewById('manuinbox')
+
+
 
   async function asyncCall () {
     //console.log('calling')
@@ -30,8 +35,33 @@ export function onLoaded(args) {
   }, 3000)
 
 
+  // secureStorage
+  //   .get({
+  //     key: 'registracija'
+  //   })
+  //   .then(function (value) {
+  //     if (value === null) {
+  //       scanBarcode()
+  //     } else {
+  //       //console.log(value)
+  //       let a = value.split("2data:")
+  //       let a2= a[0].split("1data:")
+  //       let api = a2[1]
+  //       let korisnik= a[1]
+
+
+  //       console.log(api)
+  //       console.log(korisnik)
+
+  //     }
+  //   })
+
 
 }
+
+
+
+
 
 export function onNavigationItemTap(args) {
   const component = args.object

@@ -8,8 +8,23 @@ var SecureStorage = require('@nativescript/secure-storage').SecureStorage
 //import { secureStorage } from '@nativescript/secure-storage'
 // instantiate the plugin
 let secureStorage = new SecureStorage()
-let reg
 
+import { SnackBar } from '@nativescript-community/ui-material-snackbar'
+const snackbar = new SnackBar()
+export function showSnackbar (message) {
+  snackbar
+    .action({
+      message: message,
+      textColor: 'white',
+      actionTextColor: 'orange',
+      backgroundColor: '#607d8b',
+      actionText: 'SAKRI',
+      hideDelay: 5000
+    })
+    .then(result => console.log('Action Snackbar:', result))
+}
+
+///START
 export function onNavigatingTo (args) {
   const page = args.object
   page.bindingContext = new HomeViewModel()
@@ -74,23 +89,24 @@ export function onNavigatingTo (args) {
       key: 'registracija'
     })
     .then(function (value) {
+      console.log(value)
+      value = null
       if (value === null) {
         scanBarcode()
       } else {
+        //const value = "1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki";
         //console.log(value)
-        let a = value.split("2data:")
-        let a2= a[0].split("1data:")
+        let a = value.split('2data:')
+        let a2 = a[0].split('1data:')
         let api = a2[1]
-        let korisnik= a[1]
+        let korisnik = a[1]
 
         console.log(api)
         console.log(korisnik)
+        showSnackbar('DOBRODOŠLI')
       }
     })
 }
-
-
-
 
 export function onDrawerButtonTap (args) {
   const sideDrawer = Application.getRootView()
@@ -124,8 +140,8 @@ export function scanBarcode () {
       })
       .then(
         function (result) {
-          console.log('Scan format: ' + result.format)
-          console.log('Scan text:   ' + result.text)
+          //console.log('Scan format: ' + result.format)
+          //console.log('Scan text:   ' + result.text)
 
           //console.log(secureStorage);
           secureStorage
@@ -133,9 +149,12 @@ export function scanBarcode () {
               key: 'registracija',
               value: result.text
             })
-            .then(success =>
+            .then(success => {
               console.log('Successfully set a value? ' + success)
-            )
+              setTimeout(function () {
+                showSnackbar('REGISTRACIJA USPJEŠNA')
+              }, 1000)
+            })
 
           //console.log(true);
         },
@@ -168,5 +187,3 @@ export function requestPermission () {
     })
   })
 }
-
-console.log(true)
