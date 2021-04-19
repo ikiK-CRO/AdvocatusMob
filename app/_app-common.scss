@@ -190,3 +190,12 @@ TextField {
 //   padding: 25;
 //   padding-bottom: 10;
 // }
+
+mdctextfield {
+  ripple-color: var(--glavnab-dark);
+  elevation: 4;
+  stroke-color: var(--glavnab-dark);             /* the border color when active */
+  stroke-inactive-color: var(--glavnab-light);   /* the border color when inactive */
+  floating-color: var(--glavnab-dark);           /* the floating placeholder color when active */
+  floating-inactive-color: var(--glavnab-light); /* the floating placeholder color when inactive */
+}

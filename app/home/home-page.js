@@ -89,20 +89,21 @@ export function onNavigatingTo (args) {
       key: 'registracija'
     })
     .then(function (value) {
-      console.log(value)
-      value = null
+      //console.log(value)
+      //value = null
+      value = "1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki";
+
       if (value === null) {
         scanBarcode()
       } else {
-        //const value = "1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki";
         //console.log(value)
         let a = value.split('2data:')
         let a2 = a[0].split('1data:')
         let api = a2[1]
         let korisnik = a[1]
 
-        console.log(api)
-        console.log(korisnik)
+        //console.log(api)
+        //console.log(korisnik)
         showSnackbar('DOBRODOŠLI')
       }
     })

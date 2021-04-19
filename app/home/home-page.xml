@@ -1,6 +1,7 @@
 <Page
     navigatingTo="onNavigatingTo"
-    xmlns="http://schemas.nativescript.org/tns.xsd">
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:mdt="@nativescript-community/ui-material-textfield">
     <ActionBar>
         <!--
         Use the NavigationButton as a side-drawer button in Android
@@ -37,11 +38,11 @@
             <!-- <Label text="" class="action-label h2" color="white" ios:style="margin-top: -40px"></Label> -->
         </StackLayout>
     </ActionBar>
-
     <StackLayout class="page__content">
-        <Label class="page__content-icon fas" text="&#xf015;"></Label>
-        <Label class="page__content-placeholder" text="<!-- test -->"></Label>
-       
-
+        <Label class="page__content-icon fas" text="&#xf084;" style="margin-top: 50px"></Label>
+        <StackLayout horizontalAlignment="center" style="margin: 150px">
+            <mdt:TextField elevation="5" rippleColor="#607d8b" hint="UNESITE LOZINKU" style="text-align:center; width: 100%" returnKeyType="done" autocorrect="false"/>
+            <Button text="PRIJAVI SE" class="btn btn-primary btn-rounded-sm" style="width: 50%; margin-top: 100px" id="btn"/>
+        </StackLayout>
     </StackLayout>
 </Page>

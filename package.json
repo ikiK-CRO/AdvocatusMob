@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@nativescript-community/ui-material-snackbar": "^5.2.22",
+    "@nativescript-community/ui-material-textfield": "^5.2.22",
     "@nativescript/core": "~8.0.0",
     "@nativescript/firebase": "^11.1.3",
     "@nativescript/secure-storage": "^3.0.0",
