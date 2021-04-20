@@ -7,7 +7,7 @@
         Use the NavigationButton as a side-drawer button in Android
         because ActionItems are shown on the right side of the ActionBar
         -->
-        <NavigationButton visibility="collapsed" tap="onDrawerButtonTap">
+        <NavigationButton visibility="collapsed" tap="onDrawerButtonTap" id="visible1">
             <Label class="fas" text="&#xf0c9;"></Label>
         </NavigationButton>
         <!--
@@ -19,13 +19,15 @@
             visibility="collapse"
             tap="onInboxTap"
             ios.position="right"
+            id="visible2"
             >
             <Label class="fas fa-3x" text="&#xf01c;" style="color: white;  font-size: 20%; padding-right: 40px" id="manuinbox"></Label>
         </ActionItem>
         <ActionItem
             visibility="collapse"
             tap="onDrawerButtonTap"
-            ios.position="right">
+            ios.position="right"
+            id="visible3">
             <Label class="fas  fa-3x" text="&#xf0c9;" style="color: white; font-size: 20%"></Label>
         </ActionItem>
         <!-- <Label style="color: white" text="AdvocatusMob - Naslovna"></Label> -->
@@ -38,15 +40,16 @@
             <!-- <Label text="" class="action-label h2" color="white" ios:style="margin-top: -40px"></Label> -->
         </StackLayout>
     </ActionBar>
-    <StackLayout class="page__content" id="home-login-Modul">
-        <Label class="page__content-icon fas" text="&#xf084;" style="margin-top: 50px; margin-bottom: 50px"></Label>
-        <Label class="h1" text="" style="margin-top: -10px " id="korisnik" style="text-align:center; width: 100%"></Label>
-        <StackLayout horizontalAlignment="center" style="margin: 40px 100px 0px 100px">
+    <StackLayout class="page__content">
+        <StackLayout horizontalAlignment="center" style="margin: 40px 100px 0px 100px" id="homeloginmodul">
+            <Label class="page__content-icon fas" text="&#xf084;" style="margin-top: 50px; margin-bottom: 50px"></Label>
+            <Label class="h1" text="" style="margin-top: -10px " id="korisnik" style="text-align:center; width: 100%"></Label>
             <mdt:TextField elevation="5" rippleColor="#607d8b" hint="UNESITE LOZINKU" style="text-align:center; width: 100%" returnKeyType="done" autocorrect="false" id="password" secure="true" keyboardType="datetime" editable="true" class="h3"/>
             <Button text="PRIJAVI SE" class="btn btn-primary btn-rounded-sm" style="width: 50%; margin-top: 100px" id="loginbtn"/>
         </StackLayout>
-        <StackLayout class="page__content" visibility="collapsed" id="home-content">
+        <StackLayout class="page__content" visibility="collapsed" id="homecontent">
             <Label class="page__content-icon fas" text="&#xf015;" style="margin-top: 50px; margin-bottom: 50px"></Label>
+            <Label class="h1" text="" style="margin-top: -10px " id="korisnik2" style="text-align:center; width: 100%"></Label>
         </StackLayout>
-     </StackLayout>
-    </Page>
+    </StackLayout>
+</Page>

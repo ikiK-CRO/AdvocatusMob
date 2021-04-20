@@ -1,7 +1,7 @@
-import { Frame, Application } from '@nativescript/core'
+import { Frame, Application, Enums } from '@nativescript/core'
 import { HomeViewModel } from './home-view-model'
 import { inboxMeniIkona } from '~/app'
-
+import { Label, GestureTypes } from '@nativescript/core'
 import { BarcodeScanner } from 'nativescript-barcodescanner'
 ///var BarcodeScanner = require("nativescript-barcodescanner").BarcodeScanner;
 var SecureStorage = require('@nativescript/secure-storage').SecureStorage
@@ -23,21 +23,20 @@ export function showSnackbar (message) {
     })
     .then(result => console.log('Action Snackbar:', result))
 }
-import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer'
 
 ///START
 export function onNavigatingTo (args) {
-  let sideDrawer = Application.getRootView();
-
+  let sideDrawer = Application.getRootView()
   sideDrawer.getViewById('sideDrawer')
   sideDrawer.gesturesEnabled = false
-  
+
   const page = args.object
   page.bindingContext = new HomeViewModel()
 
   let manuinbox = page.getViewById('manuinbox')
   let korisnikPage = page.getViewById('korisnik')
+  let korisnikPage2 = page.getViewById('korisnik2')
   let password = page.getViewById('password')
   let loginbtn = page.getViewById('loginbtn')
 
@@ -75,9 +74,63 @@ export function onNavigatingTo (args) {
   }, 4000)
 
   loginbtn.on('tap', args => {
-    console.log('loginbtn')
-    console.log(password.text)
-   
+    //console.log('loginbtn')
+    //console.log(password.text)
+
+    secureStorage
+      .get({
+        key: 'registracija'
+      })
+      .then(function (value) {
+        //console.log(value)
+        //value = null
+        value =
+          '1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki 3data:Appdiz Informatika'
+
+        if (value === null) {
+          scanBarcode()
+        } else {
+          let a = value.split('2data:')
+          let a2 = a[0].split('1data:')
+          let api = a2[1]
+          let kor = a[1].split(' 3data:')
+          let korisnik = kor[0]
+
+          let req = api.trim() + '?login=' + korisnik + '&psw=' + password.text
+          //console.log(req)
+          fetch(req)
+            .then(response => {
+              if (response.ok) {
+                return response.json()
+              } else {
+                throw new Error('NETWORK RESPONSE ERROR')
+              }
+            })
+            .then(data => {
+              console.log(data)
+              if (data === true) {
+                showSnackbar('PRIJAVA USPJEŠNA')
+                sideDrawer.gesturesEnabled = true
+                //sideDrawer.showDrawer()
+
+                page.getViewById('homeloginmodul').visibility = 'collapsed'
+
+                let a = page.getViewById('homecontent')
+                let b = page.getViewById('visible1')
+                let c = page.getViewById('visible2')
+                let d = page.getViewById('visible3')
+                let els = [a, b, c, d]
+
+                els.forEach(item => {
+                  item.visibility = 'visible'
+                })
+              } else {
+                showSnackbar('GREŠKA PRILIKOM PRIJAVE!')
+              }
+            })
+            .catch(error => console.error('FETCH ERROR:', error))
+        }
+      })
   })
 
   manuinbox.on('tap', args => {
@@ -92,12 +145,13 @@ export function onNavigatingTo (args) {
   })
 
   //async
-
-  // secureStorage.set({
-  //   key: 'registracija',
-  //   value: null
-  // })
-  // .then(success => console.log('Successfully set a value? ' + success))
+  secureStorage
+    .set({
+      key: 'registracija',
+      value:
+        '1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki 3data:Appdiz Informatika'
+    })
+    .then(success => console.log('Successfully set a value? ' + success))
 
   //console.log(secureStorage)
   secureStorage
@@ -107,7 +161,8 @@ export function onNavigatingTo (args) {
     .then(function (value) {
       //console.log(value)
       //value = null
-      //value = "1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki";
+      value =
+        '1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki 3data:Appdiz Informatika'
 
       if (value === null) {
         scanBarcode()
@@ -116,8 +171,15 @@ export function onNavigatingTo (args) {
         let a = value.split('2data:')
         let a2 = a[0].split('1data:')
         let api = a2[1]
-        let korisnik = a[1]
-        korisnikPage.text=korisnik
+        let kor = a[1].split(' 3data:')
+        let korisnik = kor[0]
+        let ured = kor[1]
+        // console.log(api)
+        // console.log(korisnik)
+        // console.log(ured)
+
+        korisnikPage.text = korisnik
+        korisnikPage2.text = korisnik
         password.focus()
         //console.log(api)
         //console.log(korisnik)
@@ -125,7 +187,6 @@ export function onNavigatingTo (args) {
       }
     })
 }
-
 
 export function onDrawerButtonTap (args) {
   const sideDrawer = Application.getRootView()
@@ -206,5 +267,3 @@ export function requestPermission () {
     })
   })
 }
-
-

@@ -7,7 +7,7 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
   id="sideDrawer"
   xmlns:nsDrawer="nativescript-ui-sidedrawer"
   loaded="onLoaded"
-  class="ns-statusbar-transparent" gesturesEnabled="true"
+  class="ns-statusbar-transparent" 
 >
     <nsDrawer:RadSideDrawer.drawerTransition>
         <nsDrawer:SlideInOnTopTransition />
@@ -17,9 +17,8 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
         <GridLayout rows="auto, *" class="nt-drawer__content" >
             <StackLayout class="nt-drawer__header" style="background-color: #607d8b">
                 <Image class="nt-drawer__header-image fas t-36" src="font://&#xf2bd;" />
-                <Label class="nt-drawer__header-brand" text="Odvjetnički ured:" />
-                <Label class="nt-drawer__header-brand" text="{{office}}" id="office"/>
-                <Label class="nt-drawer__header-footnote" text="{{user}}" id="user" />
+                <Label class="nt-drawer__header-brand h2" text="" id="office"/>
+                <Label class="nt-drawer__header-footnote h1" text="" id="user" />
             </StackLayout>
 
             <ScrollView row="1" id="meni">
