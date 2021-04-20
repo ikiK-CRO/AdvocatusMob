@@ -7,7 +7,7 @@ https://docs.nativescript.org/ui/professional-ui-components/SideDrawer/getting-s
   id="sideDrawer"
   xmlns:nsDrawer="nativescript-ui-sidedrawer"
   loaded="onLoaded"
-  class="ns-statusbar-transparent"
+  class="ns-statusbar-transparent" gesturesEnabled="true"
 >
     <nsDrawer:RadSideDrawer.drawerTransition>
         <nsDrawer:SlideInOnTopTransition />

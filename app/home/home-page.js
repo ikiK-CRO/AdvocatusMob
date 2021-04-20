@@ -23,13 +23,23 @@ export function showSnackbar (message) {
     })
     .then(result => console.log('Action Snackbar:', result))
 }
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+
 
 ///START
 export function onNavigatingTo (args) {
+  let sideDrawer = Application.getRootView();
+
+  sideDrawer.getViewById('sideDrawer')
+  sideDrawer.gesturesEnabled = false
+  
   const page = args.object
   page.bindingContext = new HomeViewModel()
 
   let manuinbox = page.getViewById('manuinbox')
+  let korisnikPage = page.getViewById('korisnik')
+  let password = page.getViewById('password')
+  let loginbtn = page.getViewById('loginbtn')
 
   async function asyncCall () {
     //console.log('calling')
@@ -64,6 +74,12 @@ export function onNavigatingTo (args) {
     asyncCall()
   }, 4000)
 
+  loginbtn.on('tap', args => {
+    console.log('loginbtn')
+    console.log(password.text)
+   
+  })
+
   manuinbox.on('tap', args => {
     console.log('manuinbox')
 
@@ -91,7 +107,7 @@ export function onNavigatingTo (args) {
     .then(function (value) {
       //console.log(value)
       //value = null
-      value = "1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki";
+      //value = "1data:https://advocatus-test.appdiz-informatika.hr/api/api_V1.php 2data:kiki";
 
       if (value === null) {
         scanBarcode()
@@ -101,13 +117,15 @@ export function onNavigatingTo (args) {
         let a2 = a[0].split('1data:')
         let api = a2[1]
         let korisnik = a[1]
-
+        korisnikPage.text=korisnik
+        password.focus()
         //console.log(api)
         //console.log(korisnik)
         showSnackbar('DOBRODOŠLI')
       }
     })
 }
+
 
 export function onDrawerButtonTap (args) {
   const sideDrawer = Application.getRootView()
@@ -188,3 +206,5 @@ export function requestPermission () {
     })
   })
 }
+
+
