@@ -124,6 +124,7 @@ export function onNavigatingTo (args) {
                 els.forEach(item => {
                   item.visibility = 'visible'
                 })
+                
               } else {
                 showSnackbar('GREŠKA PRILIKOM PRIJAVE!')
               }
